@@ -1,4 +1,4 @@
-package com.cloudera.sa.ConfigableMapperExample.util;
+package com.cloudera.sa.ArcmainMapper.util;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -111,6 +111,8 @@ public class ConfigurableInputFormat extends InputFormat<LongWritable, Text> {
             for (FileStatus fileStatus : fileStatuses) {
 
               Path sourceFilePath = fileStatus.getPath();
+
+                System.out.println("The filename is: " + sourceFilePath.getName());
 
               if (Math.abs(sourceFilePath.getName().hashCode() % numberOfMappers) == taskId) {
                 //System.out.println("FileToRead:" + fileStatus.getPath());

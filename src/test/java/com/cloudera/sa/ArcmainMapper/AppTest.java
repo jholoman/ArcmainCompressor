@@ -1,4 +1,4 @@
-package com.cloudera.sa.ConfigableMapperExample;
+package com.cloudera.sa.ArcmainMapper;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
