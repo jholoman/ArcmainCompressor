@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2c515f1-1c76-4318-823b-8e303ffc8023" name="Default" comment="GZIP Buffer Param&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ArcmainCompressor.iml" afterPath="$PROJECT_DIR$/ArcmainCompressor.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cloudera/sa/ArcmainMapper/FileCompressorJob.java" afterPath="$PROJECT_DIR$/src/main/java/com/cloudera/sa/ArcmainMapper/FileCompressorJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cloudera/sa/ArcmainMapper/FileUnCompressorJob.java" afterPath="$PROJECT_DIR$/src/main/java/com/cloudera/sa/ArcmainMapper/FileUnCompressorJob.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ArcmainCompressor.iws" />
@@ -72,13 +69,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FileCompressorJob.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FileCompressorJob.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cloudera/sa/ArcmainMapper/FileCompressorJob.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="30" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.33333334" vertical-offset="361" max-vertical-offset="2880">
+            <state line="38" column="30" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="2880">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="627">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,7 +94,8 @@
           <provider selected="true" editor-type-id="text-editor">
             <state line="45" column="45" selection-start="1447" selection-end="1447" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3465">
               <folding>
-                <element signature="e#2026#2038#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#6446#6458#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -521,7 +528,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="950" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -541,7 +548,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10714286" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20952381" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20952381" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44701582" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2140351" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -593,7 +600,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="123" column="0" selection-start="3582" selection-end="3582" vertical-scroll-proportion="0.0" vertical-offset="1451" max-vertical-offset="3750">
           <folding>
-            <element signature="e#2026#2038#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#6446#6458#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -634,17 +642,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="45" column="45" selection-start="1447" selection-end="1447" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3465">
           <folding>
-            <element signature="e#2026#2038#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#6446#6458#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cloudera/sa/ArcmainMapper/FileCompressorJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="30" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.33333334" vertical-offset="361" max-vertical-offset="2880">
+        <state line="38" column="30" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="2880">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="627">
+          <folding />
         </state>
       </provider>
     </entry>
