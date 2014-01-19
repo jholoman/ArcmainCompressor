@@ -6,7 +6,6 @@ import java.util.zip.GZIPOutputStream;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
-import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
@@ -37,15 +36,27 @@ public class FileCompressorJob {
         String numberOfMappers = args[2];
         String compressionCodec = args[3];
 
+        String buffersize = "";
+
+        if (args.length == 5) {
+             buffersize = args[4];
+        } else {
+            buffersize = "8192";
+        }
+
+        //int buffersize = Integer.parseInt(args[4]);
+
         if ( !((compressionCodec.toLowerCase().equals("gzip")) || (compressionCodec.toLowerCase().equals("bzip2"))) )
         {
             System.out.println("Valid compression codecs are gzip and bzip2");
             return;
         }
 
+
         Configuration conf = new Configuration();
         conf.set("compressionCodec", compressionCodec);
         conf.set("outputPath", outputPath);
+        conf.set("buffersize", buffersize);
 
         // Create job
         Job job = new Job(conf);
@@ -69,8 +80,9 @@ public class FileCompressorJob {
         job.setNumReduceTasks(0);
 
         Configuration config = new Configuration();
-        FileSystem hdfs = FileSystem.get(config);
-/// Do we really want this here???
+        //FileSystem hdfs = FileSystem.get(config);
+
+      /// Do we really want this here???
      //   hdfs.delete(new Path(outputPath), true);
 
         // Exit
@@ -78,13 +90,12 @@ public class FileCompressorJob {
     }
 
     public static class compressMapper extends
-            Mapper<LongWritable, Text, BytesWritable, BytesWritable> {
-        Text newKey = new Text();
-        Text newValue = new Text();
-        String outputDir = new String();
-        String compressionCodec = new String();
+            Mapper<LongWritable, Text, NullWritable, NullWritable> {
+        String outputDir;
+        String compressionCodec;
         Configuration config;
         FileSystem hdfs;
+        int buffer;
 
 
         @Override
@@ -94,6 +105,10 @@ public class FileCompressorJob {
             hdfs = FileSystem.get(config);
             outputDir = config.get("outputPath");
             compressionCodec = config.get("compressionCodec");
+            String buffersize = config.get("buffersize");
+            buffer = Integer.parseInt(buffersize);
+
+
         }
 
         @Override
@@ -110,16 +125,17 @@ public class FileCompressorJob {
         }
 
         private void processSingleFile(Path sourceFilePath,
-                                       Context context) throws IOException, InterruptedException {
+                                       Context context) throws IOException {
 
             context.getCounter("Files", "NumberOfFiles").increment(1);
             FileStatus fileStatus = hdfs.getFileStatus(sourceFilePath);
             context.getCounter("Files", "NumberOfFileBytes").increment(fileStatus.getLen());
             context.getCounter("Files", "NumberOfBlocks").increment(fileStatus.getLen() / fileStatus.getBlockSize());
 
+
             if (compressionCodec.equals("gzip")) {
                 Path targetFilePath = new Path (String.format("%s/%s", outputDir, sourceFilePath.getName() + ".gz" ));
-                writeGZip(sourceFilePath, targetFilePath);
+                writeGZip(sourceFilePath, targetFilePath, buffer);
             } else if (compressionCodec.equals("bzip2")){
                 Path targetFilePath = new Path (String.format("%s/%s", outputDir, sourceFilePath.getName() + ".bz2" ));
                 writeBZip2(sourceFilePath,targetFilePath);
@@ -127,11 +143,11 @@ public class FileCompressorJob {
 
 
         }
-        private void writeGZip (Path sourceFilePath, Path targetFilePath) throws IOException {
+        private void writeGZip (Path sourceFilePath, Path targetFilePath, int buffer) throws IOException {
 
             FSDataInputStream in = new FSDataInputStream(hdfs.open(sourceFilePath));
             FSDataOutputStream fileOut = hdfs.create(targetFilePath);
-            GZIPOutputStream out = new GZIPOutputStream(fileOut);
+            GZIPOutputStream out = new GZIPOutputStream(fileOut, buffer);
 
             try {
                 byte[] buf = new byte[1024];

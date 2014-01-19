@@ -2,12 +2,10 @@ package com.cloudera.sa.ArcmainMapper;
 
 import java.io.*;
 
-import java.util.zip.GZIPOutputStream;
 import java.util.zip.GZIPInputStream;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
-import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
@@ -28,7 +26,7 @@ public class FileUnCompressorJob {
                     .println("FileCompressorJob <inputPath> <outputPath> <# mappers> ");
             System.out.println();
             System.out
-                    .println("Example: FileUnCompressorJob ./input ./output 20 gizp");
+                    .println("Example: FileUnCompressorJob ./input ./output 20");
             return;
         }
 
@@ -64,7 +62,7 @@ public class FileUnCompressorJob {
         job.setNumReduceTasks(0);
 
         Configuration config = new Configuration();
-        FileSystem hdfs = FileSystem.get(config);
+        //FileSystem hdfs = FileSystem.get(config);
 /// Do we really want this here???
         //   hdfs.delete(new Path(outputPath), true);
 
@@ -73,11 +71,8 @@ public class FileUnCompressorJob {
     }
 
     public static class UncompressMapper extends
-            Mapper<LongWritable, Text, BytesWritable, BytesWritable> {
-        Text newKey = new Text();
-        Text newValue = new Text();
-        String outputDir = new String();
-        String compressionCodec = new String();
+            Mapper<LongWritable, Text, NullWritable, NullWritable> {
+        String outputDir;
         Configuration config;
         FileSystem hdfs;
 
@@ -104,7 +99,7 @@ public class FileUnCompressorJob {
         }
 
         private void processSingleFile(Path sourceFilePath,
-                                       Context context) throws IOException, InterruptedException {
+                                       Context context) throws IOException {
 
             context.getCounter("Files", "NumberOfFiles").increment(1);
             FileStatus fileStatus = hdfs.getFileStatus(sourceFilePath);
