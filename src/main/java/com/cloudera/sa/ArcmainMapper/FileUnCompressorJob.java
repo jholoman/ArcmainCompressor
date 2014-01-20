@@ -61,7 +61,7 @@ public class FileUnCompressorJob {
 
         job.setNumReduceTasks(0);
 
-        Configuration config = new Configuration();
+        //Configuration config = new Configuration();
         //FileSystem hdfs = FileSystem.get(config);
 /// Do we really want this here???
         //   hdfs.delete(new Path(outputPath), true);

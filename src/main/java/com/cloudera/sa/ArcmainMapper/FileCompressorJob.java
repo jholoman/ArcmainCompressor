@@ -36,7 +36,7 @@ public class FileCompressorJob {
         String numberOfMappers = args[2];
         String compressionCodec = args[3];
 
-        String buffersize = "";
+        String buffersize;
 
         if (args.length == 5) {
              buffersize = args[4];
@@ -79,7 +79,7 @@ public class FileCompressorJob {
 
         job.setNumReduceTasks(0);
 
-        Configuration config = new Configuration();
+       // Configuration config = new Configuration();
         //FileSystem hdfs = FileSystem.get(config);
 
       /// Do we really want this here???

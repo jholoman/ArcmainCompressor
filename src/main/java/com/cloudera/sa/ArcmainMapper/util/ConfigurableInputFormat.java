@@ -10,6 +10,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.PathFilter;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
@@ -21,12 +22,20 @@ import org.apache.hadoop.mapreduce.JobContext;
 import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 
+
+
 public class ConfigurableInputFormat extends InputFormat<LongWritable, Text> {
 
   private static final String MAPRED_MAP_TASKS = "mapred.map.tasks";
   public static final String INPUT_PATH = "ConfigurableInputFormat.InputPath";
 
-  /**
+  private static final PathFilter hiddenFileFilter = new PathFilter() {
+    public boolean accept(Path p) {
+      String name = p.getName();
+       return !name.startsWith("_") && !name.startsWith(".");
+        }
+    };
+    /**
    * An input split consisting of a range on numbers.
    */
   static class ConfigurableInputSplit extends InputSplit implements Writable {
@@ -106,7 +115,7 @@ public class ConfigurableInputFormat extends InputFormat<LongWritable, Text> {
           Path inputFolderPath = new Path(inputFolder);
 
           if (hdfs.isDirectory(inputFolderPath)) {
-            FileStatus[] fileStatuses = hdfs.listStatus(inputFolderPath);
+            FileStatus[] fileStatuses = hdfs.listStatus(inputFolderPath,hiddenFileFilter);
 
             for (FileStatus fileStatus : fileStatuses) {
 
@@ -143,7 +152,7 @@ public class ConfigurableInputFormat extends InputFormat<LongWritable, Text> {
     private void addFileToReadList(FileSystem hdfs, FileStatus fileStatus,
         TaskAttemptContext context) {
       
-      
+
       filesToRead.add(fileStatus);
       
       totalBytesToRead += fileStatus.getLen();
