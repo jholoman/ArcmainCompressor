@@ -26,10 +26,10 @@ public class FileSplitCompressorJob {
     public static void main(String[] args) throws Exception {
         if (args.length < 2) {
             System.out
-                    .println("FileCompressorJob <inputPath> <outputPath>");
+                    .println("FileSplitCompressorJob <inputPath> <outputPath>");
             System.out.println();
             System.out
-                    .println("Example: FileCompressorJob ./input ./output");
+                    .println("Example: FileSplitCompressorJob ./input ./output");
             return;
         }
 
@@ -88,7 +88,7 @@ public class FileSplitCompressorJob {
 
             InputSplit is = context.getInputSplit();
             String origName = is.toString();
-            System.out.println("The input split is named " + origName);
+           // System.out.println("The input split is named " + origName);
 
             int i = origName.lastIndexOf('/');
             //int j = origName.lastIndexOf('.');
