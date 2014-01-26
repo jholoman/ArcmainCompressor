@@ -57,6 +57,8 @@ public class FileCompressorJob {
         conf.set("compressionCodec", compressionCodec);
         conf.set("outputPath", outputPath);
         conf.set("buffersize", buffersize);
+        conf.set("mapred.map.tasks.speculative.execution", "false");
+        conf.set("mapred-D mapred.task.timeout","0");
 
         // Create job
         Job job = new Job(conf);

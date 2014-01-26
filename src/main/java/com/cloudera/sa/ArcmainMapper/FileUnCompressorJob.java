@@ -14,6 +14,7 @@ import org.apache.commons.compress.compressors.bzip2.*;
 
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.NullOutputFormat;
 
 import com.cloudera.sa.ArcmainMapper.util.ConfigurableInputFormat;
